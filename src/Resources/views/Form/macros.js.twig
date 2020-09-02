@@ -69,7 +69,9 @@
                     {%- endif -%}
 
                     {%- for condition in rule.conditions -%}
-                        {{ attribute(macro_conditions, condition.macro, [condition, rule]) }}
+                        {% if macro_conditions is defined %}
+                            {{ attribute(macro_conditions, condition.macro, [condition, rule]) }}
+                        {% endif %}
                     {%- endfor -%}
 
                     return true;
